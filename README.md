@@ -11,7 +11,7 @@ Export schema: `python manage.py spectacular --file openapi.yaml`
 ## Apps
 
 - `users` — registration (`POST /api/auth/register/`) and JWT login (`POST /api/auth/login/`)
-- `accounts` — `GET /api/accounts/balance/`, `GET /api/transactions/?from=&to=` (transfers later)
+- `accounts` — `GET /api/accounts/account-number/`, `GET /api/accounts/balance/`, `GET /api/transactions/?from=&to=`, `POST /api/transfers/`
 
 ## Local development (virtualenv)
 

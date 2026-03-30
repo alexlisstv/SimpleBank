@@ -38,11 +38,12 @@ class Account(models.Model):
 
 
 class Transaction(models.Model):
-    """Ledger line: positive amount with credit/debit direction."""
+    """Ledger line: positive amount; type encodes economic role."""
 
     class Type(models.TextChoices):
         CREDIT = "credit", "Credit"
         DEBIT = "debit", "Debit"
+        FEE = "fee", "Fee"
 
     account = models.ForeignKey(
         Account,

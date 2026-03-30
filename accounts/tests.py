@@ -30,6 +30,7 @@ class BalanceAndTransactionsAPITests(APITestCase):
         self.user = User.objects.get(email="owner@example.com")
         self.account = Account.objects.get(user=self.user)
         _auth_client(self.client, self.user)
+        self.account_number_url = reverse("account-number")
         self.balance_url = reverse("account-balance")
         self.transactions_url = reverse("transaction-list")
 
@@ -37,6 +38,11 @@ class BalanceAndTransactionsAPITests(APITestCase):
         self.client.credentials()
         r = self.client.get(self.balance_url)
         self.assertEqual(r.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def test_account_number_matches_registration(self):
+        r = self.client.get(self.account_number_url)
+        self.assertEqual(r.status_code, status.HTTP_200_OK)
+        self.assertEqual(r.data, {"account_number": self.account.account_number})
 
     def test_balance_returns_string_decimal(self):
         r = self.client.get(self.balance_url)

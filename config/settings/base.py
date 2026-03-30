@@ -103,5 +103,6 @@ SPECTACULAR_SETTINGS = {
         {"name": "auth", "description": "Registration and JWT authentication"},
         {"name": "accounts", "description": "Balances"},
         {"name": "transactions", "description": "Transaction history"},
+        {"name": "transfers", "description": "Transfers between accounts"},
     ],
 }
