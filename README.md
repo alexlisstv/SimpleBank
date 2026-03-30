@@ -2,9 +2,15 @@
 
 REST API (Django 4 + DRF + PostgreSQL). See `PLAN.md` for scope and implementation checklist.
 
+## API docs (OpenAPI / Swagger)
+
+With the dev server running: [Swagger UI](http://127.0.0.1:8000/api/docs/), [ReDoc](http://127.0.0.1:8000/api/redoc/), raw schema at `/api/schema/`. Use **Authorize** in Swagger with `Bearer <access_token>` after login.
+
+Export schema: `python manage.py spectacular --file openapi.yaml`
+
 ## Apps
 
-- `users` — registration and authentication (upcoming)
+- `users` — registration (`POST /api/auth/register/`) and JWT login (`POST /api/auth/login/`)
 - `accounts` — balances, transactions, transfers (upcoming)
 
 ## Local development (virtualenv)

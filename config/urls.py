@@ -17,9 +17,33 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import include, path
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularRedocView,
+    SpectacularSwaggerView,
+)
+from rest_framework.permissions import AllowAny
+
+# OpenAPI UI and schema must stay public (JWT protects business endpoints only).
+_SPECTACULAR_PUBLIC = {"authentication_classes": [], "permission_classes": [AllowAny]}
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path(
+        "api/schema/",
+        SpectacularAPIView.as_view(**_SPECTACULAR_PUBLIC),
+        name="schema",
+    ),
+    path(
+        "api/docs/",
+        SpectacularSwaggerView.as_view(url_name="schema", **_SPECTACULAR_PUBLIC),
+        name="swagger-ui",
+    ),
+    path(
+        "api/redoc/",
+        SpectacularRedocView.as_view(url_name="schema", **_SPECTACULAR_PUBLIC),
+        name="redoc",
+    ),
     path("api/", include("users.urls")),
     path("api/", include("accounts.urls")),
 ]
