@@ -101,5 +101,7 @@ SPECTACULAR_SETTINGS = {
     "COMPONENT_SPLIT_REQUEST": True,
     "TAGS": [
         {"name": "auth", "description": "Registration and JWT authentication"},
+        {"name": "accounts", "description": "Balances"},
+        {"name": "transactions", "description": "Transaction history"},
     ],
 }

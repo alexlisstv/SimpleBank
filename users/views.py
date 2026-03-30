@@ -16,6 +16,7 @@ from .services import register_user_with_account
     responses={201: RegisterResponseSerializer},
     summary="Register",
     description="Create user, bank account, and apply welcome credit in one transaction.",
+    auth=[],
 )
 class RegisterView(APIView):
     permission_classes = [AllowAny]
@@ -40,6 +41,7 @@ class RegisterView(APIView):
     request=TokenObtainPairSerializer,
     summary="Login (JWT)",
     description="Obtain access and refresh tokens. Send `email` and `password`.",
+    auth=[],
 )
 class LoginView(TokenObtainPairView):
     permission_classes = [AllowAny]
